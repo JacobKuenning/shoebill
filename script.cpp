@@ -12,7 +12,7 @@ script::script(std::string fileName){
     std::string str;
 
     if (!std::filesystem::exists(fileName))
-        error("File \"%s\" does not exists.", fileName.c_str());
+        error("File \"%s\" does not exist.", fileName.c_str());
 
     while (std::getline(scriptFile, str)){
         lines.push_back(str);
@@ -22,6 +22,7 @@ script::script(std::string fileName){
         error("File \"%s\" has no lines.", fileName.c_str());
     }
 
+    findAndAppendScripts();
     cleanScript();
     findSections();
 
@@ -30,6 +31,26 @@ script::script(std::string fileName){
 
 script::~script(){
 }
+
+void script::findAndAppendScripts(){
+    for (std::string line : lines){
+        if (line.size() != 0){
+            if (line[0] == '+'){
+                std::string scriptName = line.substr(1, line.size()-1);
+                if (!std::filesystem::exists(scriptName))
+                    error("File \"%s\" does not exist.", scriptName.c_str());
+                else {
+                    std::ifstream scriptFile(scriptName);
+                    std::string str;
+                    while (std::getline(scriptFile, str)){
+                        lines.push_back(str);
+                    }   
+                }
+            }
+        }
+    }
+}
+
 
 // remove all comments and newlines from the lines in the lines vector
 void script::cleanScript(){

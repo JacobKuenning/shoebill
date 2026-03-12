@@ -13,6 +13,7 @@ public:
     void cleanScript();
     void printLines();
     void findSections();
+    void findAndAppendScripts();
     bool isValidSection(std::string s);
     int strToLineNumber(std::string s, int linenum);
     void findAndReplace(std::string f, std::string r);
