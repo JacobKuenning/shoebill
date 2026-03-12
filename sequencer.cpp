@@ -340,6 +340,7 @@ void sequencer::reverse(std::vector<std::string> args){
     
 }
 
+// replace all variables in line
 std::string sequencer::replaceVariables(std::string line){
     if (line.find_first_of("$") == std::string::npos)
         return line;

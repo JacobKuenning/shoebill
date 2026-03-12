@@ -31,6 +31,7 @@ script::script(std::string fileName){
 script::~script(){
 }
 
+// remove all comments and newlines from the lines in the lines vector
 void script::cleanScript(){
     // removing all comments
     for (int i = 0; i < lines.size(); i++){
@@ -68,6 +69,7 @@ void script::cleanScript(){
     return;
 }
 
+// scan lines for @ symbol followed by a name, add it to sections
 void script::findSections(){
     for (int i = 0; i < sLength; i++){
         std::string l = lines[i];
@@ -92,15 +94,19 @@ void script::findAndReplace(std::string f, std::string r){
     }
 }
 
+// returns a line number if s is a number (relative to linenum or not), returns the line number of a section if s is a section name
 int script::strToLineNumber(std::string s, int linenum){
+    // number passed in
     if (isInt(s)){
         return std::stoi(s) - 1;
     }
 
+    // section name passed in
     if (isValidSection(s)){
         return sections[s] - 1; //-1 so that the section name is visible
     }
 
+    // if relative position is being used
     char suffix = s[0];
     if (suffix == 'r'){ // relative position
         std::string sub = s.substr(1,s.length()-1);
@@ -113,7 +119,7 @@ int script::strToLineNumber(std::string s, int linenum){
     return linenum;
 }
 
-
+// returns true is section exists with name s
 bool script::isValidSection(std::string s){
     if (sections.find(s) != sections.end())
         return true;

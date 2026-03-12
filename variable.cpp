@@ -6,6 +6,7 @@ variable::variable(std::string n, std::vector<std::string> args){
     setValues(args);
 }
 
+// get current value of variable and increment it along the vector if theres more than 1
 std::string variable::getCurrValue(){
     std::string value = values[vCounter];
 
@@ -26,8 +27,6 @@ std::string variable::getCurrValue(){
             vCounter = vSize;
     }
     
-    
-
     return value;
 }
 

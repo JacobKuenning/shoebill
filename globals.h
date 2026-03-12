@@ -1,7 +1,7 @@
 #pragma once
 #include <mutex>
 
-extern std::mutex outputMx;
-extern std::mutex midiMx;
-extern std::mutex vectorMx;
-extern std::mutex variableMx;
+extern std::mutex outputMx; // outputting to the terminal
+extern std::mutex midiMx; // sending midi messages
+extern std::mutex vectorMx; // changing vectors in master
+extern std::mutex variableMx; // changing variables

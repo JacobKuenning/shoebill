@@ -3,6 +3,7 @@
 #include <cctype>
 #include <algorithm>
 
+// delimit string by bar
 std::vector<std::string> splitIntoMessages(std::string l){
     std::string line = l;
     std::vector<std::string> messagesText;
@@ -20,6 +21,7 @@ std::vector<std::string> splitIntoMessages(std::string l){
     return messagesText;
 }
 
+// delimit string by comments
 std::vector<std::string> splitIntoArguments(std::string m){
     std::vector<std::string> argumentsText;
 
@@ -45,6 +47,7 @@ std::vector<std::string> splitIntoArguments(std::string m){
     return weightArguments(argumentsText);
 }
 
+// weight arguments by number after semicolon
 std::vector<std::string> weightArguments(std::vector<std::string> args){
     std::vector<std::string> weightedArgs;
     for (std::string a : args){

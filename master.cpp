@@ -105,6 +105,7 @@ void master::branch(std::string n, int i){
     return;
 }
 
+// create asynchronous object that changes a cc value incrementally
 void master::createCCLerper(int ch, int cc, int start, int end, float t){
     // check for existing cclerper with ch and cc that was passed in
     vectorMx.lock();
