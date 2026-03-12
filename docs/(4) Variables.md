@@ -10,22 +10,33 @@ Variable declaration lines must start with the '-' character, followed by the na
 `-cnote="ch1,c7"`
 
 ## Using Variables
-To use a variable, type '$' then the name of the variable. shoebill replaces any variables in a line with the associated value before the line is evaluated. 
-For example, the line
+Before it evaluates a line of script, shoebill first checks if there are any variables that need to be resolved. Specifically, it scans the line for a '$' character, followed by one of your variable's names. Then, it replaces that text with the variables value.
+For example, using the variables created above:
 
-`$cmaj`
+`$cmaj` will be replaced with `|ch1,c3|ch1,e3|ch1,g3|`
 
-will be replaced with it's value defined in the previous section
+`|ch1,g3|$cnote|` will be `|ch1,g3|ch1,c3|` after the variable is replaced.
 
-`|ch1,c3|ch1,e3|ch1,g3|`
+## Arrays
+Variables can be assigned multiple values, by placing multiple strings in between brackets, seperated by commas. Note that if you want to include commas within an element, you will have to surround that element with double quotes.
 
-Simlarly,
+`-cscale=[c3,d3,e3,f3,g3,a3,b3]`
 
-`|$cnote|` 
+`-var=["|ch1,c3|","|ch1,e3|"|`
 
-will be replaced with
-`|ch1,c7|`
+The first time the variable is used, it will be replaced with the first value in the array. The second time the variable is used, it will be replaced with the second value in the array. This pattern continues until it reaches the end, where it loops back around to the first element.
+For example, using the variables created above:
+`|$cscale|` will be `|c3|`
 
-You can have multiple variables within a line
+`|$cscale|` will be `|d3|`
 
-`|$cnote|$dnote|`
+`|$cscale|` will be `|e3|`
+
+## Nesting
+Since shoebill checks all lines for variables, you can use variables in the declaration of other variables.
+For example:
+
+`-cnote=c3`
+`-cchord=|$cnote|e3|g3|`
+
+`$cchord` will be replaced with `|c3|e3|g3|`
