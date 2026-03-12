@@ -6,10 +6,32 @@ To use shoebill, write a script in a text file, then run shoebill and pass the n
 
 # Documentation
 ## Basics
-shoebill interprets your script one line at a time. Lines can either be MIDI messages, variable declarations, and function calls. If the program encounters a MIDI message, it will play it in-time, according to a user-set BPM which defaults to 100. Function calls and variable declarations happen out of time.
+shoebill interprets your script one line at a time. Lines can either be MIDI messages, variable declarations, or function calls. If the program encounters a MIDI message, it will play it in-time, according to a user-set BPM which defaults to 100. Function calls and variable declarations happen still in sequence, but out of time, meaning they happen "instantly" as the program finds them.
 
 ## Messages
-Messages are the backbone of shoebill. When 
+Messages are encapsulation by the "|" character. There are two kinds of messages, note messages and cc messages.
+# Sending Note Messages
+Note messages have 3 fields, a MIDI Channel, a note, and a velocity. The following will make MIDI channel 2 play a C3, with a velocity of 80.
+
+`|ch2,c3,80|`
+
+If you do not include a velocity, it will default to 127, which is the maximum.
+
+`|ch3,c3|`
+
+If you do not include a channel, it will send the message through the default channel, which can be set in the config.
+
+`|c3|`
+
+`|c3,60|`
+
+OFF can be used as either a substitute for a velocity of zero, which means the note is no longer being played.
+
+`|c3,OFF|`
+
+OFF can also be used to turn off all notes that have been played by a particular channel
+
+`|ch4,OFF|`
 
 ## Functions
 Function lines must start with the '#' character, then the name of the function, then open and closed parenthesis.
