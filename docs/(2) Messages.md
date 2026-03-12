@@ -16,6 +16,7 @@ OFF can also be used to turn off all notes that have been played by a particular
 
 ## Sending CC Messages
 
-Control Change messages have 3 parts, a MIDI channel, a cc number, and a value. The following line tells ch1 to set cc60 to 40:`|ch1,cc60,40|`
+Control Change messages have 3 parts, a MIDI channel, a cc number, and a value. The following line tells ch1 to set cc60 to 40:
+`|ch1,cc60,40|`
 
 Just like sending note messages, you can leave out the channel to send the message through the default channel, and use OFF as a replacement for a value of 0.
