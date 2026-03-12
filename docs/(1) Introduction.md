@@ -10,7 +10,7 @@ shoebill interprets your script one line at a time. Lines can either be MIDI mes
 
 ## Messages
 Messages are encapsulation by the "|" character. There are two kinds of messages, note messages and cc messages.
-# Sending Note Messages
+### Sending Note Messages
 Note messages have 3 fields, a MIDI Channel, a note, and a velocity. The following will make MIDI channel 2 play a C3, with a velocity of 80.
 
 `|ch2,c3,80|`
