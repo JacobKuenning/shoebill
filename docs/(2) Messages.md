@@ -6,6 +6,7 @@ Messages are the way that the sequencer sends MIDI signals. Messages are encapsu
 ## Sending Note Messages
 Note messages have 3 fields, a MIDI Channel, a note, and a velocity. The following will make MIDI channel 2 play a C3, with a velocity of 80: `|ch2,c3,80|`
 
+#Modifications and Shortcuts
 If you do not include a velocity, it will default to 127, which is the maximum: `|ch3,c3|`
 
 If you do not include a channel, it will send the message through the default channel, which can be set in the config: `|c3|`, `|c3,60|`
@@ -17,6 +18,7 @@ OFF can also be used to turn off all notes that have been played by a particular
 ## Sending CC Messages
 
 Control Change messages have 3 parts, a MIDI channel, a cc number, and a value. The following line tells ch1 to set cc60 to 40:
+
 `|ch1,cc60,40|`
 
 Just like sending note messages, you can leave out the channel to send the message through the default channel, and use OFF as a replacement for a value of 0.
