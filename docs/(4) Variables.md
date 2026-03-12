@@ -1,14 +1,13 @@
 # Variables
+Variables are a handy way to store strings of text that you find yourself commonly using. While more akin to macros than variables you might use in programming languages, the value of the variable can be reassigned while the program is running, so therefore the name variable makes more sense.
+
+Before each line of script is read and evaluated by the program, it first checks for any variables present, then replaces them with their value. 
 ## Creating Variables
-Variable declaration lines must start with the '-' character, then the name of the variable, then an equal sign, then the value of the variable. Variables in shoebill are more akin to macros then they are variables in any programming language, however, their value can change if they are redefined later in the script. 
+Variable declaration lines must start with the '-' character, followed by the name of the variable and an equal sign. Everything to the right of the equal sign will be the value of the variable.
 
 `-cmaj=|ch1,c3|ch1,e3|ch1,g3|`
 
 `-cnote="ch1,c7"`
-
-You may also use variables within defined variables.
-
-`-chord=|$cnote|ch1,e5|ch1,g5|`
 
 ## Using Variables
 To use a variable, type '$' then the name of the variable. shoebill replaces any variables in a line with the associated value before the line is evaluated. 
