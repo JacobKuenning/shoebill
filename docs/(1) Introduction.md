@@ -19,6 +19,7 @@ Function lines must start with the '#' character, then the name of the function,
 Variable declaration lines must start with the '-' character, then the name of the variable, then an equal sign, then the value of the variable. Variables in shoebill are more akin to macros then they are variables in any programming language, however, their value can change if they are redefined later in the script. 
 
 `-cmaj=|ch1,c3|ch1,e3|ch1,g3|`
+
 `-cnote="ch1,c7"`
 
 # Using Variables
@@ -30,7 +31,7 @@ will be replaced with it's value defined in the previous section
 Simlarly,
 `|$cnote|` 
 will be replaced with
-|ch1,c7|
+`|ch1,c7|`
 
 ## Sections
 
