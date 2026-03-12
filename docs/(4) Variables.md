@@ -11,6 +11,7 @@ Variable declaration lines must start with the '-' character, followed by the na
 
 ## Using Variables
 Before it evaluates a line of script, shoebill first checks if there are any variables that need to be resolved. Specifically, it scans the line for a '$' character, followed by one of your variable's names. Then, it replaces that text with the variables value.
+
 For example, using the variables created above:
 
 `$cmaj` will be replaced with `|ch1,c3|ch1,e3|ch1,g3|`
@@ -25,7 +26,9 @@ Variables can be assigned multiple values, by placing multiple strings in betwee
 `-var=["|ch1,c3|","|ch1,e3|"|`
 
 The first time the variable is used, it will be replaced with the first value in the array. The second time the variable is used, it will be replaced with the second value in the array. This pattern continues until it reaches the end, where it loops back around to the first element.
+
 For example, using the variables created above:
+
 `|$cscale|` will be `|c3|`
 
 `|$cscale|` will be `|d3|`
@@ -37,6 +40,7 @@ Since shoebill checks all lines for variables, you can use variables in the decl
 For example:
 
 `-cnote=c3`
+
 `-cchord=|$cnote|e3|g3|`
 
 `$cchord` will be replaced with `|c3|e3|g3|`
