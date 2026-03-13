@@ -1,45 +1,47 @@
 # Functions
+
 Function calls must start with the '#' character followed by the name of the function and the correct number of arguments within closed parenthesis
 
-## Timing and Traversal
-**set_bpm(bpm)**
+## Control Changes
 
-**set_steps_per_beat(steps)**
-
-**wait_ms(ms)**
-
-**set_inc(inc)**
-
-**reverse(times)**
-
-**go_to(line)**
-
-**play(section)**
-
-
-## Variable Editing
-**v_find_n_rep(variable, find, replace, exclude)**
-
-**v_set_inc(variable, inc)**
-
-**v_set_counter(variable, counter)**
-
-**v_insert_element(variable, element, position)**
-
-**v_remove_element(variable, position)**
-
-**v_remove_elements_by_value(variable, value)**
-
+**#start_cc**(cc, start, end, time)
 
 ## Sequencer Creation and Control
-**new_seq(name, line)**
 
-**end_seq() or end_seq(name)**
+**#end_seq**() or **#end_seq**(name)
 
-**pause_seq() or pause_seq(name)**
+**#new_seq**(name, line)
 
-**resume_seq(name)**
+**#pause_seq**() or **#pause_seq**(name)
 
+**#resume_seq**(name)
 
-## Control Changes
-**start_cc(cc, start, end, time)
+## Timing and Traversal
+
+**#go_to**(line)
+
+**#play**(section)
+
+**#reverse**(times)
+
+**#set_bpm**(bpm)
+
+**#set_inc**(inc)
+
+**#set_steps_per_beat**(steps)
+
+**#wait_ms**(ms)
+
+## Variable Editing
+
+**#v_find_n_rep**(variable, find, replace, exclude)
+
+**#v_insert_element**(variable, element, position)
+
+**#v_remove_element**(variable, position)
+
+**#v_remove_elements_by_value**(variable, value)
+
+**#v_set_counter**(variable, counter)
+
+**#v_set_inc**(variable, inc)
