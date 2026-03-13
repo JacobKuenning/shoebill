@@ -18,7 +18,7 @@ For example, using the variables created above:
 
 `|ch1,g3|$cnote|` will be `|ch1,g3|ch1,c3|` after the variable is replaced.
 
-## Arrays
+## Arrays (Variables with multiple values)
 Variables can be assigned multiple values, by placing multiple strings in between brackets, seperated by commas. Note that if you want to include commas within an element, you will have to surround that element with double quotes.
 
 `-cscale=[c3,d3,e3,f3,g3,a3,b3]`
@@ -44,3 +44,6 @@ For example:
 `-cchord=|$cnote|e3|g3|`
 
 `$cchord` will be replaced with `|c3|e3|g3|`
+
+## Variables Across Multiple Sequencers
+Any variable declared by one sequencer is accessible by any sequencer. This also means that if one sequencer changes the value of a variable, it is now changed for all sequencers. Similarly, if one sequencer uses an array, then the next sequencer that uses that variable will then get the next element in that array.
