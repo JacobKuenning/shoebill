@@ -176,7 +176,8 @@ all other sequencers can use that variable, and if one sequencer changes a varia
 ### Single Value Variables
 
 Single value variables are declared with the following syntax: `-name="value"`. This says to create a variables called `name` and set it's value to `value`.
-To use this stored text later, use the `$` character. Variables can be used in all instructions except sections.
+To use this stored text later, use the `$` character. Variables can be used in all instructions except sections. The value(s) do not need to be encased with quotes,
+but it is good practice.
 
 #### In a Message
 
@@ -197,5 +198,65 @@ To use this stored text later, use the `$` character. Variables can be used in a
 `-expanded_scale="$scale|b3|"` will be evaluated to `-expanded_scale="|c3|e3|g3||b3|"` before it is ran.
 
 ### Multi Value Variables
+
+Variables can also hold multiple values, like so:
+
+`-var=["element1","element2","element3"]`
+
+When used using the `$` character, a multi value variable will give out it's first value. The next time it is used, it will give out the next value.
+After using the last variable in the list, it will loop around. This is global.
+
+`-var=["|c3|","|e3|","|g3|"]`
+
+`$var` will be evaluated to `|c3|`
+
+`$var` will be evaluated to `|e3|`
+
+`$var` will be evaluated to `|g3|`
+
+`$var` will be evaluated to `|c3|` again, looping.
+
+The behavior of multi value variables can be changed with functions.
+
+## Sections
+
+Before the script is ran, shoebill runs through the function and records the line numbers of all sections. These are denoted using an `@` symbol at the beginning of the line.
+These are used in the functions `go_to` and `play`, and when passed as arguments, the sequencer will jump to that section. `@END` is a special keyword for telling the sequencer to
+return to the spot after the last ran `play` function. Think of it like returning from a function.
+
+`go_to(chords)`
+
+`...`
+
+`@chords`
+
+## Randomization
+
+In your script, you can also use randomization. Randomization is evaluated after variables, and before the line is ran.
+Randomization happens when there is `{}` brackets. The sequencer will pick an element randomly from inside the brackets, and replace everything inside the brackets with that element.
+This does not happen in variable declaration instructions. Also, surrounding the elements in quotes is not necessary but good practice. They cannot be nested.
+
+`{"|c3|","|d3|","|g3|"}` will be evaluated to `|c3|`, `|d3|`, or `|g3|`.
+
+`#set_bpm({50,70}) ` will set the bpm to either 50 or 70.
+
+`-var={"option1","option2","option3"}` will not set `var` to be a random option, but it will make `var` equal `{"option1","option2","option3"}`, which can be used later.
+
+`$var` will  then be either `option1`, `option2`, or `option3"}`
+
+As all this does is replace text, it can be used in very creative ways.
+
+`{"#go_to(section)","|c3|"}
+
+### Weighting
+
+If you'd like some elements picked more often then others, you can use weighting. To weight an element in a random list, use the `:` character followed by a number.
+
+`{"c3":3,"d3":2}` will be `c3` 3 times out of 5, and `d3` 2 times out of 5.
+
+Unweighted elements have a weight of 1.
+
+`{"go_to(section1)":2,"go_to(section2)"}` will go to `section1` 2 times out of 3, and `section2` 1 time out of 3. 
+
 
 
