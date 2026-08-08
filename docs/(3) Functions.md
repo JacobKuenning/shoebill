@@ -6,19 +6,31 @@ Function calls must start with the '#' character followed by the name of the fun
 
 **#start_cc**(*cc, start, end, time*)
 
+Change CC *cc* from *start* to *end* over the course of *time* seconds
+
 ## Sequencer Creation and Control
 
 **#end_seq**() or **#end_seq**(*name*)
 
+Kill the sequencer with the name *name*. Otherwise, kill the sequencer that called this function.
+
 **#new_seq**(*name, line*)
+
+Create a new sequencer with the name *name*, starting at line number *line*.
 
 **#pause_seq**() or **#pause_seq**(*name*)
 
+Pause the calling sequencer or another by name.
+
 **#resume_seq**(*name*)
+
+Resume a sequencer by name.
 
 ## Timing and Traversal
 
 **#go_to**(*line*)
+
+Change the calling sequencers current line to *line*
 
 **#play**(*section*)
 
