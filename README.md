@@ -258,5 +258,34 @@ Unweighted elements have a weight of 1.
 
 `{"go_to(section1)":2,"go_to(section2)"}` will go to `section1` 2 times out of 3, and `section2` 1 time out of 3. 
 
+## Config
+
+The program reads configuration settings from a `config.txt` file using `key=value` syntax. Below are all the supported configuration parameters categorized by type:
+
+### Colors (Foreground)
+
+* `functionColor` — Sets the foreground color for function lines.
+* `messageColor` — Sets the foreground color for MIDI message lines.
+* `sectionColor` — Sets the foreground color for section markers.
+* `variableColor` — Sets the foreground color for variable definition lines.
+
+### Background Colors
+
+* `functionBackground` — Sets the background color for function lines.
+* `messageBackground` — Sets the background color for MIDI message lines.
+* `sectionBackground` — Sets the background color for section markers.
+* `variableBackground` — Sets the background color for variable definition lines.
+
+### Sequencer Naming and Output
+
+* `startingSequencerName` — Defines the default name given to the initial starting sequencer.
+* `useSequencerNameInOutput` — Toggles whether the terminal output prefixes lines with the sequencer's name (`TRUE`/`FALSE`) instead of its numerical ID.
+
+### Sequencer and MIDI Settings
+
+* `defaultBPM` — Sets the default tempo in beats per minute (integer).
+* `defaultSubdivisions` — Sets the default number of steps per beat (integer).
+* `defaultChannel` — Sets the default MIDI channel (integer), or can be set to `NONE` to disable default channel injection.
+* `killMidiOnQuit` — Determines whether all MIDI notes are automatically turned off when quitting the program (`TRUE`/`FALSE`).
 
 
