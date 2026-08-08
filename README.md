@@ -64,3 +64,138 @@ Messages are the only kind of instruction that can be chained together on a sing
 `|ch1,c3|ch1,e3|ch2,g4|`
 
 `|c3|e3|g3|ch1,cc6,80|`
+
+`|c3||e3|g3||ch3,d5,OFF|` empty messages can also be chained, for ease of using variables.
+
+### The x Character
+
+The `x` instruction is used to wait for a step. The following will play C3 through channel 1, and then wait for 3 steps.
+
+`|ch1,c3|`
+
+`x`
+
+`x`
+
+`x`
+
+## Functions
+
+Functions are used to change the behavior of something, and are executed when a sequencer encounters them. 
+They are run "out of time" which means the sequencer does not wait a step before continuing after executing the function.
+
+### Control Changes
+
+`#start_cc(ch, cc, start, end, t)`
+
+Interpolate a MIDI Control Change (*cc*) message on channel (*ch*) from *start* value to *end* value smoothly over the course of *t* seconds.
+
+### Sequencer Creation and Control
+
+`#end_seq()` or `#end_seq(name)`
+
+Kill the sequencer with the name *name*. Otherwise, kill the sequencer that called this function.
+
+`#new_seq(name, line)` or `#new_seq(line)`
+
+Create a new sequencer with an optional name (*name*), starting at a specific line number or section label (*line*).
+
+`#pause_seq()` or `#pause_seq(name)`
+
+Pause the calling sequencer or another sequencer specified by *name*.
+
+`#resume_seq(name)`
+
+Resume a paused sequencer by its *name*.
+
+### Timing and Traversal
+
+`#go_to(line)`
+
+Change the calling sequencer's current line to the specified line number or section label (*line*).
+
+`#play(section)`
+
+Jump to and play a specific labeled section (*section*) of the sequence, returning afterwards.
+
+`#reverse(times)`
+
+Reverse the sequence playback direction for a given number of *times*.
+
+`#set_bpm(bpm)`
+
+Set the sequencer tempo to *bpm* beats per minute.
+
+`#set_steps_per_beat(steps)`
+
+Set the timeline resolution subdivisions to *steps* steps per beat.
+
+`#set_inc(inc)`
+
+Change the line-traversal step increment to *inc*.
+
+`#wait_ms(ms)`
+
+Pause script execution for *ms* milliseconds.
+
+### Variable Editing
+
+`#v_add_element(variable, element)`
+
+Add a new *element* to the end of a given *variable* list.
+
+`#v_find_n_rep(variable, find, replace, exclude)`
+
+Find and replace values within a *variable*, skipping any specified in *exclude*.
+
+`#v_insert_element(variable, element, position)`
+
+Insert an *element* into a *variable* at the specified index *position*.
+
+`#v_remove_element(variable, position)`
+
+Remove an element from a *variable* at the given index *position*.
+
+`#v_remove_elements_by_value(variable, value)`
+
+Remove all elements matching a specific *value* from a *variable*.
+
+`#v_set_counter(variable, counter)`
+
+Set the internal index tracking counter for a *variable* to *counter*.
+
+`#v_set_inc(variable, inc)`
+
+Set the vector iteration step increment for a *variable* to *inc*.
+
+## Variables
+
+Variables Declarations are the third kind of instruction. They tell the sequencer to associate a name with a value or a list of values. These variables are global, meaning that if a sequencer executes a variable declaration,
+all other sequencers can use that variable, and if one sequencer changes a variable's value, it changes it for every other sequencer.
+
+### Single Value Variables
+
+Single value variables are declared with the following syntax: `-name="value"`. This says to create a variables called `name` and set it's value to `value`.
+To use this stored text later, use the `$` character. Variables can be used in all instructions except sections.
+
+#### In a Message
+
+`-cmajor_chord="c3|e3|g3"`
+
+`|c2|$cmajor_chord|d5|` will be evaluated to `|c2|c3|e3|g3|d5|` before it is ran.
+
+#### In a Function
+
+`-beats_per_minute="80"`
+
+`#set_bpm($beats_per_minute)` will be evaluated to `#set_bpm(80)` before it is ran.
+
+#### In another Variable Declaration
+
+`-chord="|c3|e3|g3|"`
+
+`-expanded_scale="$scale|b3|"` will be evaluated to `-expanded_scale="|c3|e3|g3||b3|"` before it is ran.
+
+### Multi Value Variables
+
+
