@@ -246,7 +246,7 @@ This does not happen in variable declaration instructions. Also, surrounding the
 
 As all this does is replace text, it can be used in very creative ways.
 
-`{"#go_to(section)","|c3|"}
+`{"#go_to(section)","|c3|"}`
 
 ### Weighting
 
